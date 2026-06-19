@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备维护服务 - 都市康洁物业</title>
+    <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E8D5A8;
+            --gold-dark: #A8853A;
+            --beige: #F5E6CC;
+            --dark-bg: #0D0D0D;
+            --dark-card: #1A1A1A;
+            --dark-surface: #222222;
+            --dark-border: #333333;
+            --dark-text: #E0E0E0;
+            --dark-text-muted: #999999;
+            --transition-speed: 0.4s;
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #FAF8F5;
+            --dark-card: #FFFFFF;
+            --dark-surface: #F0EDE8;
+            --dark-border: #E0D8CC;
+            --dark-text: #2D2D2D;
+            --dark-text-muted: #666666;
+        }
+
+        /* ========== Reset & Base ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ========== Navigation ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 60px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+            transition: all var(--transition-speed);
+        }
+
+        [data-theme="light"] .navbar {
+            background: rgba(250, 248, 245, 0.9);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .nav-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            color: var(--dark-text-muted);
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--dark-border);
+            color: var(--gold);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ========== Page Hero ========== */
+        .page-hero {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(201, 169, 110, 0.08) 0%, transparent 100%);
+            position: relative;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .page-hero .page-label {
+            display: inline-block;
+            font-size: 13px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .page-hero .page-intro {
+            font-size: 18px;
+            color: var(--dark-text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--dark-text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--gold);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== Service Content ========== */
+        .service-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .service-content .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .service-content .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ========== Sub Service Cards ========== */
+        .sub-service-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-left: 4px solid var(--gold);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sub-service-card:hover {
+            border-left-color: var(--gold-light);
+            box-shadow: 0 4px 20px rgba(201, 169, 110, 0.15);
+            transform: translateX(4px);
+        }
+
+        .sub-service-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 30px;
+        }
+
+        .sub-service-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .sub-service-arrow {
+            color: var(--gold);
+            font-size: 14px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .sub-service-card.expanded .sub-service-arrow {
+            transform: rotate(90deg);
+        }
+
+        .sub-service-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sub-service-text {
+            padding: 0 30px 24px 30px;
+        }
+
+        .sub-service-text p {
+            font-size: 15px;
+            color: var(--dark-text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .sub-service-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sub-service-text ul li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            line-height: 2;
+        }
+
+        .sub-service-text ul li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ========== Contact Section ========== */
+        .contact-section {
+            background: var(--dark-surface);
+            padding: 80px 60px;
+        }
+
+        .contact-section .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .contact-section .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 4px;
+        }
+
+        .contact-item-text p {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+        }
+
+        .contact-form {
+            padding: 40px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+        }
+
+        .contact-form h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 4px;
+            color: var(--dark-text);
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.4);
+        }
+
+        .form-success {
+            display: none;
+            padding: 16px;
+            background: rgba(201, 169, 110, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            color: var(--gold);
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        /* ========== Footer ========== */
+        .footer {
+            background: var(--dark-bg);
+            border-top: 1px solid var(--dark-border);
+            padding: 60px 60px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--gold);
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: var(--dark-text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 13px;
+            color: var(--dark-text-muted);
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ========== Back to Top ========== */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 1024px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+            .service-content {
+                padding: 60px 40px;
+            }
+            .contact-section {
+                padding: 60px 40px;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--dark-card);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                border-bottom: 1px solid var(--dark-border);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .page-hero h1 {
+                font-size: 32px;
+            }
+            .page-hero .page-intro {
+                font-size: 16px;
+            }
+            .service-content {
+                padding: 40px 20px;
+            }
+            .service-content .section-title {
+                font-size: 26px;
+            }
+            .sub-service-header {
+                padding: 20px;
+            }
+            .sub-service-header h3 {
+                font-size: 17px;
+            }
+            .sub-service-text {
+                padding: 0 20px 20px 20px;
+            }
+            .contact-section {
+                padding: 40px 20px;
+            }
+            .contact-section .section-title {
+                font-size: 26px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                padding: 40px 20px 20px;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== Navigation ========== -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">康</div>
+            都市康洁
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#services" onclick="closeMobileMenu()">服务项目</a></li>
+            <li><a href="index.html#about" onclick="closeMobileMenu()">关于我们</a></li>
+            <li><a href="index.html#contact" onclick="closeMobileMenu()">联系我们</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <button class="theme-toggle" id="themeToggle" title="切换主题" onclick="toggleTheme()">&#127769;</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">&#9776;</button>
+        </div>
+    </nav>
+
+    <!-- ========== Page Hero ========== -->
+    <section class="page-hero">
+        <div class="page-label">Equipment Maintenance</div>
+        <h1>设备维护服务</h1>
+        <p class="page-intro">专业工程团队，持证上岗，负责小区所有设施设备的巡检、维修和保养。</p>
+        <div class="breadcrumb">
+            <a href="index.html">首页</a> / <span>设备维护服务</span>
+        </div>
+    </section>
+
+    <!-- ========== Service Content ========== -->
+    <section class="service-content">
+        <h2 class="section-title">服务详情</h2>
+            <div class="sub-service-card" onclick="toggleSubService(this)">
+                <div class="sub-service-header">
+                    <h3>电梯维保管理</h3>
+                    <span class="sub-service-arrow">&#9654;</span>
+                </div>
+                <div class="sub-service-content">
+                    <div class="sub-service-text">
+                        <p>与专业电梯维保公司合作，每15天例行保养，每年全面检测，确保电梯安全运行。</p>
+                        <ul>
+                <li>15天例行保养制度</li>
+                <li>年度全面安全检测</li>
+                <li>维保记录完整存档</li>
+                <li>故障应急快速响应</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-service-card" onclick="toggleSubService(this)">
+                <div class="sub-service-header">
+                    <h3>消防设施维护</h3>
+                    <span class="sub-service-arrow">&#9654;</span>
+                </div>
+                <div class="sub-service-content">
+                    <div class="sub-service-text">
+                        <p>每日巡查消防通道，每月检测消防栓水压，每季度测试烟感报警系统，确保消防安全。</p>
+                        <ul>
+                <li>每日消防通道巡查</li>
+                <li>每月消防栓水压检测</li>
+                <li>季度烟感报警测试</li>
+                <li>灭火器定期检查更换</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-service-card" onclick="toggleSubService(this)">
+                <div class="sub-service-header">
+                    <h3>供水供电维护</h3>
+                    <span class="sub-service-arrow">&#9654;</span>
+                </div>
+                <div class="sub-service-content">
+                    <div class="sub-service-text">
+                        <p>定期检查水泵房、配电室等关键设施，建立设备台账，实施预防性维护计划。</p>
+                        <ul>
+                <li>水泵房定期巡检</li>
+                <li>配电室日常维护</li>
+                <li>设备台账详细记录</li>
+                <li>预防性维护计划执行</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-service-card" onclick="toggleSubService(this)">
+                <div class="sub-service-header">
+                    <h3>智能化系统运维</h3>
+                    <span class="sub-service-arrow">&#9654;</span>
+                </div>
+                <div class="sub-service-content">
+                    <div class="sub-service-text">
+                        <p>门禁、监控、对讲等智能化设备定期巡检维护，软件及时升级，确保系统稳定运行。</p>
+                        <ul>
+                <li>门禁系统定期维护</li>
+                <li>监控设备巡检保养</li>
+                <li>对讲系统功能测试</li>
+                <li>软件版本及时升级</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-service-card" onclick="toggleSubService(this)">
+                <div class="sub-service-header">
+                    <h3>24小时应急维修</h3>
+                    <span class="sub-service-arrow">&#9654;</span>
+                </div>
+                <div class="sub-service-content">
+                    <div class="sub-service-text">
+                        <p>设立24小时维修热线，一般故障2小时内修复，紧急故障15分钟内到场处理。</p>
+                        <ul>
+                <li>24小时维修热线</li>
+                <li>一般故障2小时修复</li>
+                <li>紧急故障15分钟到场</li>
+                <li>维修质量回访确认</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-service-card" onclick="toggleSubService(this)">
+                <div class="sub-service-header">
+                    <h3>供冷暖系统维护</h3>
+                    <span class="sub-service-arrow">&#9654;</span>
+                </div>
+                <div class="sub-service-content">
+                    <div class="sub-service-text">
+                        <p>冬季供暖前全面检修供暖设备，夏季空调系统保养，确保供冷暖系统正常运行。</p>
+                        <ul>
+                <li>供暖前全面检修</li>
+                <li>供暖季持续监测</li>
+                <li>空调系统夏季保养</li>
+                <li>供冷暖效果优化</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- ========== Contact Section ========== -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">联系我们</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#128222;</div>
+                    <div class="contact-item-text">
+                        <h4>服务热线</h4>
+                        <p>0311-8888-8888</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#128231;</div>
+                    <div class="contact-item-text">
+                        <h4>电子邮箱</h4>
+                        <p>service@ds-kangjie.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#128205;</div>
+                    <div class="contact-item-text">
+                        <h4>公司地址</h4>
+                        <p>河北省石家庄市</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#9200;</div>
+                    <div class="contact-item-text">
+                        <h4>服务时间</h4>
+                        <p>周一至周日 8:00 - 18:00（24小时值班）</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>在线留言</h3>
+                <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p style="display:none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" name="name" placeholder="请填写您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系方式</label>
+                            <input type="text" id="phone" name="phone" placeholder="请填写您的联系电话" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言内容</label>
+                        <textarea id="message" name="message" placeholder="请输入您的问题或需求..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">提交留言</button>
+                    <div class="form-success" id="formSuccess">
+                        &#10003; 提交成功！感谢您的留言，我们将尽快与您联系。
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Footer ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>都市康洁物业</h3>
+                    <p>石家庄市都市康洁物业管理有限公司，专注物业服务二十余年，以专业、诚信、高效的服务理念，为每一位业主打造温馨、安全、舒适的居住环境。</p>
+                    <div class="footer-social">
+                        <a href="#" title="微信公众号">微</a>
+                        <a href="#" title="官方微博">博</a>
+                        <a href="#" title="抖音号">抖</a>
+                        <a href="#" title="业主APP">APP</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>服务项目</h4>
+                    <ul>
+                        <li><a href="wuye.html">物业管理</a></li>
+                        <li><a href="baojie.html">保洁服务</a></li>
+                        <li><a href="shebei.html">设备维护</a></li>
+                        <li><a href="shequ.html">社区服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="index.html#about">公司介绍</a></li>
+                        <li><a href="index.html#stats">企业数据</a></li>
+                        <li><a href="index.html#services">服务项目</a></li>
+                        <li><a href="index.html#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li><a href="tel:031188888888">0311-8888-8888</a></li>
+                        <li><a href="mailto:service@ds-kangjie.com">service@ds-kangjie.com</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">抖音号</a></li>
+                        <li><a href="#">业主APP下载</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 石家庄市都市康洁物业管理有限公司 版权所有 | 冀ICP备XXXXXXXX号</p>
+                <div class="footer-bottom-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">网站地图</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== Back to Top ========== -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">&#8593;</button>
+
+    <!-- ========== JavaScript ========== -->
+    <script>
+        // ===== Theme Toggle =====
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            document.getElementById('themeToggle').textContent = next === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
+            localStorage.setItem('theme', next);
+        }
+
+        // Load saved theme
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                document.getElementById('themeToggle').textContent = saved === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
+            }
+        })();
+
+        // ===== Mobile Menu =====
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('navLinks').classList.remove('open');
+        }
+
+        // ===== Back to Top =====
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== Sub Service Toggle =====
+        function toggleSubService(card) {
+            var content = card.querySelector('.sub-service-content');
+            var arrow = card.querySelector('.sub-service-arrow');
+            if (card.classList.contains('expanded')) {
+                card.classList.remove('expanded');
+                content.style.maxHeight = '0';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                card.classList.add('expanded');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                arrow.style.transform = 'rotate(90deg)';
+            }
+        }
+
+        // ===== Form Submit =====
+        var form = document.getElementById('contactForm');
+        var success = document.getElementById('formSuccess');
+        var btn = form.querySelector('.form-submit');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btn.textContent = '提交中...';
+            btn.disabled = true;
+
+            var formData = new FormData(form);
+            var encoded = new URLSearchParams(formData).toString();
+
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                },
+                body: encoded
+            }).then(function(response) {
+                if (response.ok) {
+                    success.innerHTML = '&#10003; 提交成功！感谢您的留言，我们将尽快与您联系。';
+                    success.classList.add('show');
+                    form.reset();
+                    setTimeout(function() {
+                        success.classList.remove('show');
+                    }, 5000);
+                } else {
+                    success.innerHTML = '提交失败，请稍后重试或直接拨打我们的电话。';
+                    success.classList.add('show');
+                    setTimeout(function() {
+                        success.classList.remove('show');
+                        success.innerHTML = '&#10003; 提交成功！感谢您的留言，我们将尽快与您联系。';
+                    }, 5000);
+                }
+            }).catch(function() {
+                success.innerHTML = '提交失败，请稍后重试或直接拨打我们的电话。';
+                success.classList.add('show');
+                setTimeout(function() {
+                    success.classList.remove('show');
+                    success.innerHTML = '&#10003; 提交成功！感谢您的留言，我们将尽快与您联系。';
+                }, 5000);
+            }).finally(function() {
+                btn.textContent = '提交留言';
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

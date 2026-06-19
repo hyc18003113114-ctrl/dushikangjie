@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提交成功 - 都市康洁物业管理有限公司</title>
+    <style>
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E8D5A8;
+            --dark-bg: #0D0D0D;
+            --dark-card: #1A1A1A;
+            --dark-text: #E0E0E0;
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #FAF8F5;
+            --dark-card: #FFFFFF;
+            --dark-text: #2D2D2D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--dark-card);
+            border-radius: 20px;
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .success-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--gold);
+            color: #0D0D0D;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h1 class="success-title">提交成功！</h1>
+        <p class="success-message">
+            感谢您的留言，我们已经收到您的信息。<br>
+            我们的客服人员将尽快与您联系。
+        </p>
+        <a href="/" class="back-btn">返回首页</a>
+        <div class="contact-info">
+            <p>如有紧急问题，请直接拨打：</p>
+            <p><a href="tel:031188888888">0311-8888-8888</a></p>
+        </div>
+    </div>
+</body>
+</html>
