@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都市康洁物业管理有限公司 - 专业物业服务</title>
+    <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E8D5A8;
+            --gold-dark: #A8853A;
+            --beige: #F5E6CC;
+            --dark-bg: #0D0D0D;
+            --dark-card: #1A1A1A;
+            --dark-surface: #222222;
+            --dark-border: #333333;
+            --dark-text: #E0E0E0;
+            --dark-text-muted: #999999;
+            --transition-speed: 0.4s;
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #FAF8F5;
+            --dark-card: #FFFFFF;
+            --dark-surface: #F0EDE8;
+            --dark-border: #E0D8CC;
+            --dark-text: #2D2D2D;
+            --dark-text-muted: #666666;
+        }
+
+        /* ========== Reset & Base ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ========== Navigation ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 60px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+            transition: all var(--transition-speed);
+        }
+
+        [data-theme="light"] .navbar {
+            background: rgba(250, 248, 245, 0.9);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .nav-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            color: var(--dark-text-muted);
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--dark-border);
+            color: var(--gold);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ========== Hero Section ========== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(13, 13, 13, 0.6) 0%,
+                rgba(13, 13, 13, 0.4) 50%,
+                rgba(13, 13, 13, 0.8) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 30px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-radius: 30px;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.4);
+        }
+
+        .btn-outline {
+            padding: 16px 40px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll .arrow {
+            display: block;
+            font-size: 24px;
+            margin-top: 8px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ========== Scrolling Text Banner ========== */
+        .scroll-banner {
+            background: var(--gold);
+            padding: 18px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scroll-track {
+            display: flex;
+            animation: scrollText 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .scroll-track span,
+        .scroll-track a {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0D0D0D;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .scroll-track span::after,
+        .scroll-track a::after {
+            content: '◆';
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        .scroll-track a:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========== Section Common ========== */
+        .section {
+            padding: 100px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 0 auto 20px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--dark-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ========== Services Section ========== */
+        .services {
+            background: var(--dark-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .service-card:hover .service-card-img {
+            transform: scale(1.05);
+        }
+
+        .service-card-img-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card-number {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 48px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.15);
+            line-height: 1;
+        }
+
+        .service-card-body {
+            padding: 28px 24px;
+        }
+
+        .service-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .service-card-desc {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            line-height: 1.8;
+        }
+
+        .service-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+
+        .service-card:hover .service-card-link {
+            gap: 12px;
+        }
+
+        /* ========== Expandable Service Card Sub-items ========== */
+        .service-card-expand-icon {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            margin-left: auto;
+        }
+
+        .service-card.expanded .service-card-expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .service-card-subitems {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: var(--dark-surface);
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .service-card.expanded .service-card-subitems {
+            max-height: 500px;
+        }
+
+        .service-card-subitems ul {
+            list-style: none;
+            padding: 12px 24px 16px;
+            margin: 0;
+        }
+
+        .service-card-subitems li {
+            font-size: 13px;
+            color: var(--dark-text-muted);
+            padding: 6px 0 6px 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+        }
+
+        .service-card-subitems li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card-subitems li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* ========== Stats Section ========== */
+        .stats {
+            background: linear-gradient(135deg, rgba(201, 169, 110, 0.1), rgba(201, 169, 110, 0.05));
+            border-top: 1px solid rgba(201, 169, 110, 0.2);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-number .plus {
+            font-size: 40px;
+            font-weight: 400;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--dark-text-muted);
+            letter-spacing: 2px;
+        }
+
+        /* ========== About Section ========== */
+        .about {
+            background: var(--dark-bg);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--dark-border);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* ========== Gallery Section ========== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--dark-border);
+            background: var(--dark-card);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(201, 169, 110, 0.2);
+        }
+
+        .gallery-item-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 140%;
+            overflow: hidden;
+        }
+
+        .gallery-item-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .gallery-item:hover .gallery-item-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: #fff;
+        }
+
+        .gallery-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        .gallery-item-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 4px;
+        }
+
+        .gallery-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-surface);
+            color: var(--dark-text-muted);
+        }
+
+        .gallery-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .gallery-placeholder-text {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        /* ========== Lightbox ========== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 36px;
+            color: #fff;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 15px;
+            color: var(--dark-text-muted);
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .service-list-group h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--dark-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+            transition: color 0.3s;
+        }
+
+        .service-list-group h4:hover {
+            color: var(--gold-light);
+        }
+
+        .service-list-group h4 .group-arrow {
+            display: inline-block;
+            font-size: 10px;
+            transition: transform 0.3s ease;
+            margin-left: auto;
+        }
+
+        .service-list-group.expanded h4 .group-arrow {
+            transform: rotate(180deg);
+        }
+
+        .service-list-group ul {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .service-list-group.expanded ul {
+            max-height: 1000px;
+        }
+
+        .service-list-group li {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            padding: 8px 0 8px 16px;
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .service-list-group li:hover {
+            color: var(--gold);
+        }
+
+        .service-list-group li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .service-list-group li .sub-detail-toggle {
+            display: inline-block;
+            font-size: 10px;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+            color: var(--gold);
+        }
+
+        .service-list-group li.sub-expanded .sub-detail-toggle {
+            transform: rotate(90deg);
+        }
+
+        .service-list-group li .sub-detail-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            font-size: 13px;
+            color: var(--dark-text-muted);
+            line-height: 1.8;
+            padding-left: 0;
+        }
+
+        .service-list-group li.sub-expanded .sub-detail-content {
+            max-height: 300px;
+            padding-top: 6px;
+        }
+
+        .service-list-group li .sub-detail-text {
+            background: var(--dark-surface);
+            border-left: 2px solid var(--gold);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+            margin-top: 4px;
+        }
+
+        /* ========== Service Details (Anchor Targets) ========== */
+        .service-detail {
+            padding: 80px 60px;
+            background: var(--dark-card);
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .service-detail:nth-child(even) {
+            background: var(--dark-bg);
+        }
+
+        .service-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .service-detail-container.reverse {
+            direction: rtl;
+        }
+
+        .service-detail-container.reverse > * {
+            direction: ltr;
+        }
+
+        .service-detail-img {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .service-detail-img img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .service-detail-content h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 16px;
+        }
+
+        .service-detail-content .gold-line {
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .service-detail-content p {
+            font-size: 15px;
+            color: var(--dark-text-muted);
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .service-detail-content ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .service-detail-content ul li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .service-detail-content ul li:hover {
+            color: var(--gold);
+        }
+
+        .service-detail-content ul li .detail-arrow {
+            display: inline-block;
+            font-size: 10px;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+            color: var(--gold);
+        }
+
+        .service-detail-content ul li.detail-expanded .detail-arrow {
+            transform: rotate(90deg);
+        }
+
+        .service-detail-content ul li .detail-expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .service-detail-content ul li.detail-expanded .detail-expand-content {
+            max-height: 200px;
+        }
+
+        .service-detail-content ul li .detail-expand-text {
+            font-size: 13px;
+            color: var(--dark-text-muted);
+            line-height: 1.8;
+            background: var(--dark-surface);
+            border-left: 2px solid var(--gold);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+            margin-top: 6px;
+        }
+
+        .service-detail-content ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ========== Contact Section ========== */
+        .contact {
+            background: var(--dark-bg);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            padding: 40px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(201, 169, 110, 0.1);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 4px;
+        }
+
+        .contact-item-text p {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+        }
+
+        .contact-form {
+            padding: 40px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+        }
+
+        .contact-form h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 4px;
+            color: var(--dark-text);
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.4);
+        }
+
+        .form-success {
+            display: none;
+            padding: 16px;
+            background: rgba(201, 169, 110, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            color: var(--gold);
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 16px;
+            animation: fadeIn 0.5s;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== Footer ========== */
+        .footer {
+            background: var(--dark-card);
+            border-top: 1px solid var(--dark-border);
+            padding: 60px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-text-muted);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            font-size: 14px;
+            color: var(--dark-text-muted);
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: var(--dark-text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 13px;
+            color: var(--dark-text-muted);
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ========== Back to Top ========== */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* ========== Music Player ========== */
+        .music-btn {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        .music-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .music-btn.playing {
+            animation: musicPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(201, 169, 110, 0.8); }
+        }
+
+        .music-btn .music-icon {
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .music-btn .music-bars {
+            display: none;
+            align-items: flex-end;
+            gap: 2px;
+            height: 20px;
+        }
+
+        .music-btn.playing .music-icon {
+            display: none;
+        }
+
+        .music-btn.playing .music-bars {
+            display: flex;
+        }
+
+        .music-bar {
+            width: 3px;
+            background: #fff;
+            border-radius: 2px;
+            animation: musicBar 0.8s ease-in-out infinite alternate;
+        }
+
+        .music-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .music-bar:nth-child(2) { height: 16px; animation-delay: 0.2s; }
+        .music-bar:nth-child(3) { height: 10px; animation-delay: 0.4s; }
+        .music-bar:nth-child(4) { height: 18px; animation-delay: 0.1s; }
+
+        @keyframes musicBar {
+            0% { height: 4px; }
+            100% { height: 20px; }
+        }
+
+        .music-btn:not(.playing) .music-bars {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .music-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-container,
+            .contact-container,
+            .service-detail-container {
+                grid-template-columns: 1fr;
+            }
+            .service-detail-container.reverse {
+                direction: ltr;
+            }
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+            .section {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--dark-card);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                border-bottom: 1px solid var(--dark-border);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-title {
+                font-size: 36px;
+            }
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .stat-number {
+                font-size: 48px;
+            }
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            .section {
+                padding: 60px 20px;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== Navigation ========== -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <div class="logo-icon">康</div>
+            都市康洁
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#services" onclick="closeMobileMenu()">服务项目</a></li>
+            <li><a href="#about" onclick="closeMobileMenu()">关于我们</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">联系我们</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <button class="theme-toggle" id="themeToggle" title="切换主题" onclick="toggleTheme()">🌙</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- ========== Hero Section ========== -->
+    <section class="hero" id="hero">
+        <img src="assets/property_hero.jpg" alt="都市康洁物业" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">石家庄市都市康洁物业管理有限公司</div>
+            <h1 class="hero-title">都市康洁<span>物业</span></h1>
+            <p class="hero-subtitle">专注物业服务二十余年，以专业、诚信、高效的服务理念，<br>为每一位业主打造温馨、安全、舒适的居住环境</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">了解我们的服务</a>
+                <a href="#contact" class="btn-outline">联系我们</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>向下滚动</span>
+            <span class="arrow">↓</span>
+        </div>
+    </section>
+
+    <!-- ========== Scrolling Text Banner ========== -->
+    <div class="scroll-banner">
+        <div class="scroll-track">
+            <a href="wuye.html">物业管理</a>
+            <a href="baojie.html">保洁服务</a>
+            <a href="shebei.html">设备维护</a>
+            <a href="shequ.html">社区服务</a>
+            <a href="lvhua.html">绿化养护</a>
+            <a href="anbao.html">安保巡逻</a>
+            <a href="tingche.html">停车管理</a>
+            <a href="zhuangxiu.html">装修监管</a>
+            <a href="kefu.html">24小时客服</a>
+            <a href="zhihui.html">智慧社区</a>
+            <a href="wuye.html">物业管理</a>
+            <a href="baojie.html">保洁服务</a>
+            <a href="shebei.html">设备维护</a>
+            <a href="shequ.html">社区服务</a>
+            <a href="lvhua.html">绿化养护</a>
+            <a href="anbao.html">安保巡逻</a>
+            <a href="tingche.html">停车管理</a>
+            <a href="zhuangxiu.html">装修监管</a>
+            <a href="kefu.html">24小时客服</a>
+            <a href="zhihui.html">智慧社区</a>
+        </div>
+    </div>
+
+    <!-- ========== Services Section ========== -->
+    <section class="section services" id="services">
+        <div class="section-header">
+            <div class="section-label">Our Services</div>
+            <h2 class="section-title">核心服务</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">我们提供全方位的物业管理服务，涵盖日常管理、环境维护、设备保障和社区运营四大板块</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" onclick="toggleServiceCard(this)">
+                <div class="service-card-img-wrapper">
+                    <img src="assets/property_management.jpg" alt="物业管理" class="service-card-img">
+                    <div class="service-card-number">01</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-card-title">物业管理</h3>
+                    <p class="service-card-desc">提供专业的物业管理服务，包括楼宇管理、客户服务、费用收缴等全方位管理解决方案。</p>
+                    <span class="service-card-link">了解详情 <span class="service-card-expand-icon">▼</span></span>
+                </div>
+                <div class="service-card-subitems">
+                    <ul>
+                        <li>楼宇日常管理</li>
+                        <li>客户服务中心</li>
+                        <li>费用收缴管理</li>
+                        <li>装修监管服务</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-card" onclick="toggleServiceCard(this)">
+                <div class="service-card-img-wrapper">
+                    <img src="assets/cleaning_service.jpg" alt="保洁服务" class="service-card-img">
+                    <div class="service-card-number">02</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-card-title">保洁服务</h3>
+                    <p class="service-card-desc">专业保洁团队，提供公共区域清洁、垃圾清运、消杀除虫等环境维护服务。</p>
+                    <span class="service-card-link">了解详情 <span class="service-card-expand-icon">▼</span></span>
+                </div>
+                <div class="service-card-subitems">
+                    <ul>
+                        <li>公共区域保洁</li>
+                        <li>绿化养护管理</li>
+                        <li>垃圾清运处理</li>
+                        <li>消杀除虫服务</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-card" onclick="toggleServiceCard(this)">
+                <div class="service-card-img-wrapper">
+                    <img src="assets/equipment_maintenance.jpg" alt="设备维护" class="service-card-img">
+                    <div class="service-card-number">03</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-card-title">设备维护</h3>
+                    <p class="service-card-desc">专业工程团队，负责电梯、消防、供水供电等设施设备的日常巡检与维修保养。</p>
+                    <span class="service-card-link">了解详情 <span class="service-card-expand-icon">▼</span></span>
+                </div>
+                <div class="service-card-subitems">
+                    <ul>
+                        <li>电梯维保管理</li>
+                        <li>消防设施维护</li>
+                        <li>水电暖维修</li>
+                        <li>智能化系统</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-card" onclick="toggleServiceCard(this)">
+                <div class="service-card-img-wrapper">
+                    <img src="assets/community_service.jpg" alt="社区服务" class="service-card-img">
+                    <div class="service-card-number">04</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-card-title">社区服务</h3>
+                    <p class="service-card-desc">丰富社区文化生活，组织各类社区活动，营造和谐温馨的邻里关系。</p>
+                    <span class="service-card-link">了解详情 <span class="service-card-expand-icon">▼</span></span>
+                </div>
+                <div class="service-card-subitems">
+                    <ul>
+                        <li>绿化养护</li>
+                        <li>安保巡逻</li>
+                        <li>停车管理</li>
+                        <li>装修监管</li>
+                        <li>24小时客服</li>
+                        <li>智慧社区</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Stats Section ========== -->
+    <section class="section stats" id="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number"><span class="counter" data-target="20">0</span><span class="plus">+</span></div>
+                <div class="stat-label">服务年限</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="counter" data-target="80">0</span><span class="plus">+</span></div>
+                <div class="stat-label">管理项目</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="counter" data-target="5000">0</span><span class="plus">+</span></div>
+                <div class="stat-label">服务户数</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Gallery Section ========== -->
+    <section class="section gallery" id="gallery">
+        <div class="section-header">
+            <div class="section-label">Our Gallery</div>
+            <h2 class="section-title">风采展示</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">记录物业服务中的精彩瞬间，展现专业团队的工作风采</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('assets/美女.jpg')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="assets/美女.jpg" alt="美女" class="gallery-item-img">
+                </div>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">美女</div>
+                    <div class="gallery-item-desc">点击查看大图</div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('assets/美女1.jpg')">
+    <div class="gallery-item-img-wrapper">
+        <img src="assets/美女1.jpg" alt="美女1" class="gallery-item-img">
+    </div>
+    <div class="gallery-item-overlay">
+        <div class="gallery-item-title">美女1</div>
+        <div class="gallery-item-desc">点击查看大图</div>
+    </div>
+</div>
+            <div class="gallery-item">
+                <div class="gallery-item-img-wrapper">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">📷</div>
+                        <div class="gallery-placeholder-text">请放置竖版照片</div>
+                    </div>
+                </div>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">社区活动</div>
+                    <div class="gallery-item-desc">丰富多彩的社区文化生活</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-img-wrapper">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">📷</div>
+                        <div class="gallery-placeholder-text">请放置竖版照片</div>
+                    </div>
+                </div>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">绿化环境</div>
+                    <div class="gallery-item-desc">优美宜居的社区环境</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-img-wrapper">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">📷</div>
+                        <div class="gallery-placeholder-text">请放置竖版照片</div>
+                    </div>
+                </div>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">设备维护</div>
+                    <div class="gallery-item-desc">专业细致的设备保养</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-img-wrapper">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">📷</div>
+                        <div class="gallery-placeholder-text">请放置竖版照片</div>
+                    </div>
+                </div>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">安全巡逻</div>
+                    <div class="gallery-item-desc">24小时守护社区安全</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== About Section ========== -->
+    <section class="section about" id="about">
+        <div class="section-header">
+            <div class="section-label">About Us</div>
+            <h2 class="section-title">关于我们</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">二十余年深耕物业管理行业，以品质服务赢得信赖</p>
+        </div>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="assets/about_company.jpg" alt="关于都市康洁">
+            </div>
+            <div class="about-text">
+                <h3>石家庄市都市康洁物业管理有限公司</h3>
+                <p>石家庄市都市康洁物业管理有限公司成立于2000年代初，是一家集物业管理、保洁服务、设备维护、社区运营于一体的综合性物业服务企业。公司秉承"以人为本、服务至上"的经营理念，以专业的管理团队和完善的服务体系，为广大业主提供高品质的物业服务。</p>
+                <p>经过二十余年的发展，公司已管理80余个住宅小区及商业项目，服务超过5000户家庭，赢得了业主和社会各界的广泛好评。公司先后获得"河北省物业管理优秀企业"、"石家庄市文明单位"等多项荣誉。</p>
+                <div class="service-list">
+                    <div class="service-list-group">
+                        <h4 onclick="toggleServiceGroup(this)">物业管理类 <span class="group-arrow">▼</span></h4>
+                        <ul>
+                            <li onclick="toggleSubDetail(this)">楼宇日常管理<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">建立完善的楼宇巡查制度，每日对公共区域、楼道、大堂等进行全面巡查，及时发现并处理各类问题，确保楼宇设施完好、环境整洁。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">客户服务中心<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">设立24小时客户服务热线，配备专业客服团队，为业主提供报修、咨询、投诉等一站式服务，确保业主诉求得到及时响应。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">费用收缴管理<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">采用线上线下相结合的缴费方式，提供物业费、水电费等代收代缴服务，账目公开透明，支持微信、支付宝等多种支付方式。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">装修监管服务<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">制定严格的装修管理制度，对业主装修申请进行审核，施工期间定期巡查，确保装修活动安全合规，不影响邻里生活。</div></div></li>
+                        </ul>
+                    </div>
+                    <div class="service-list-group">
+                        <h4 onclick="toggleServiceGroup(this)">环境服务类 <span class="group-arrow">▼</span></h4>
+                        <ul>
+                            <li onclick="toggleSubDetail(this)">公共区域保洁<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">每日对大堂、电梯、楼道、停车场等公共区域进行清扫保洁，定期进行深度清洁，保持环境整洁卫生。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">绿化养护管理<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">配备专业园艺团队，对小区绿化进行日常养护，包括修剪、浇水、施肥、病虫害防治等，打造优美的居住环境。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">垃圾清运处理<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">实行垃圾分类收集，定时定点清运，配合专业环保公司进行无害化处理，倡导绿色环保理念。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">消杀除虫服务<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">定期对公共区域进行消杀除虫作业，预防蚊蝇、蟑螂等害虫滋生，保障业主健康生活环境。</div></div></li>
+                        </ul>
+                    </div>
+                    <div class="service-list-group">
+                        <h4 onclick="toggleServiceGroup(this)">工程维修类 <span class="group-arrow">▼</span></h4>
+                        <ul>
+                            <li onclick="toggleSubDetail(this)">电梯维保管理<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">与专业电梯维保公司合作，按照国家规定进行定期维保和年检，确保电梯安全运行，故障15分钟内响应。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">消防设施维护<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">建立消防设施巡检制度，定期检查灭火器、消防栓、烟感报警器等设备，确保消防系统正常运行。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">水电暖维修<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">配备专业水电维修团队，提供24小时应急维修服务，快速处理供水、供电、供暖等突发故障。</div></div></li>
+                            <li onclick="toggleSubDetail(this)">智能化系统<span class="sub-detail-toggle">▶</span><div class="sub-detail-content"><div class="sub-detail-text">负责小区门禁、监控、对讲等智能化系统的日常运维，定期升级维护，提升小区安全管理水平。</div></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Service Detail Sections ========== -->
+    <section class="service-detail" id="detail-management">
+        <div class="service-detail-container">
+            <div class="service-detail-img">
+                <img src="assets/property_management.jpg" alt="物业管理">
+            </div>
+            <div class="service-detail-content">
+                <h3>物业管理</h3>
+                <div class="gold-line"></div>
+                <p>都市康洁物业提供全方位的物业管理服务，以规范化、标准化、精细化的管理模式，确保每一个项目的高效运转。</p>
+                <ul>
+                    <li onclick="toggleDetailItem(this)">24小时客服热线，随时响应业主需求<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">全天候服务热线，专业客服人员随时接听业主来电，记录并跟踪处理每一个服务请求，确保问题闭环解决。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">专业的楼宇巡查制度，保障公共设施完好<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">每日不少于两次的楼宇巡查，覆盖公共区域、设备机房、消防通道等重点区域，发现问题即时上报处理。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">规范化的费用收缴体系，账目公开透明<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">支持微信、支付宝、银行转账等多种缴费方式，提供电子账单和缴费提醒服务，账目清晰透明。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">严格的装修监管流程，确保施工安全合规<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">装修申请审批流程规范，施工全程监管，竣工验收合格后方可投入使用，保障建筑安全。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">完善的档案管理体系，信息可追溯查询<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">建立业主档案、设备档案、维修档案等完整的信息管理体系，支持快速查询和追溯。</div></div></li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="display:inline-block;">咨询物业管理服务</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-detail" id="detail-cleaning">
+        <div class="service-detail-container reverse">
+            <div class="service-detail-img">
+                <img src="assets/cleaning_service.jpg" alt="保洁服务">
+            </div>
+            <div class="service-detail-content">
+                <h3>保洁服务</h3>
+                <div class="gold-line"></div>
+                <p>我们的保洁团队经过专业培训，采用先进清洁设备和环保清洁剂，为业主营造整洁、卫生的居住环境。</p>
+                <ul>
+                    <li onclick="toggleDetailItem(this)">每日公共区域清扫保洁，保持环境整洁<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">大堂、电梯轿厢、楼道、停车场等区域每日清扫不少于两次，保持地面干净无杂物。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">定期深度清洁，包括大堂、电梯、楼道等<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">每周对大堂地面进行抛光打蜡，每月对电梯不锈钢进行深度保养，每季度对外墙进行清洗。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">垃圾分类收集与清运，倡导绿色环保<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">设置分类垃圾桶，引导业主参与垃圾分类，每日定时清运，确保垃圾不堆积、不异味。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">专业消杀除虫服务，预防病虫害<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">聘请专业消杀公司，每月进行两次全面消杀，重点针对地下车库、垃圾房、下水道等区域。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">雨雪天气应急清洁，保障出行安全<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">雨雪天气及时清理道路积水和积雪，突发污染事件快速响应，保障业主出行安全。</div></div></li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="display:inline-block;">咨询保洁服务</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-detail" id="detail-maintenance">
+        <div class="service-detail-container">
+            <div class="service-detail-img">
+                <img src="assets/equipment_maintenance.jpg" alt="设备维护">
+            </div>
+            <div class="service-detail-content">
+                <h3>设备维护</h3>
+                <div class="gold-line"></div>
+                <p>公司配备专业工程团队，持有相关资质证书，负责小区内所有设施设备的日常巡检、维修保养和应急处理。</p>
+                <ul>
+                    <li onclick="toggleDetailItem(this)">电梯定期维保，确保运行安全<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">与知名电梯维保企业合作，每15天进行一次例行保养，每年进行一次全面检测，确保电梯安全运行。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">消防设施巡检，保障消防安全<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">每日巡查消防通道畅通情况，每月检测消防栓水压，每季度测试烟感报警系统，确保消防安全。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">供水供电系统维护，保障基础服务<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">定期检查水泵房、配电室等关键设施，建立设备台账，实施预防性维护计划，减少故障发生率。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">智能化系统运维，提升管理效率<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">门禁系统、监控系统、对讲系统等智能化设备定期巡检维护，软件及时升级，确保系统稳定运行。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">24小时应急维修，快速响应突发事件<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">设立24小时维修热线，一般故障2小时内修复，紧急故障15分钟内到场处理。</div></div></li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="display:inline-block;">咨询设备维护服务</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-detail" id="detail-community">
+        <div class="service-detail-container reverse">
+            <div class="service-detail-img">
+                <img src="assets/community_service.jpg" alt="社区服务">
+            </div>
+            <div class="service-detail-content">
+                <h3>社区服务</h3>
+                <div class="gold-line"></div>
+                <p>我们注重社区文化建设，定期组织各类社区活动，丰富业主的精神文化生活，营造和谐温馨的社区氛围。</p>
+                <ul>
+                    <li onclick="toggleDetailItem(this)">节假日社区文化活动，增进邻里感情<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">春节联欢、中秋赏月、端午包粽子等传统节日活动，增进邻里感情，营造温馨社区氛围。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">健康讲座与义诊活动，关爱业主健康<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">定期邀请医疗专家开展健康知识讲座，组织免费义诊活动，关注业主身心健康。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">儿童亲子活动，陪伴孩子快乐成长<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">举办儿童绘画比赛、亲子运动会、暑期夏令营等活动，丰富孩子们的课余生活。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">老年关怀服务，让长者安享晚年<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">建立独居老人关爱档案，定期上门走访慰问，组织老年大学课程和文体活动。</div></div></li>
+                    <li onclick="toggleDetailItem(this)">志愿者服务团队，传递社区温暖<span class="detail-arrow">▶</span><div class="detail-expand-content"><div class="detail-expand-text">组建社区志愿者团队，开展邻里互助、环境保护、公益宣传等活动，传递社区温暖。</div></div></li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="display:inline-block;">咨询社区服务</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Contact Section ========== -->
+    <section class="section contact" id="contact">
+        <div class="section-header">
+            <div class="section-label">Contact Us</div>
+            <h2 class="section-title">联系我们</h2>
+            <div class="section-divider"></div>
+            <p class="section-desc">如有任何需求或疑问，欢迎随时联系我们，我们将竭诚为您服务</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>联系方式</h3>
+                <div class="contact-item">
+                    <div class="contact-item-icon">☎</div>
+                    <div class="contact-item-text">
+                        <h4>服务热线</h4>
+                        <p>0311-8888-8888</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉</div>
+                    <div class="contact-item-text">
+                        <h4>电子邮箱</h4>
+                        <p>service@ds-kangjie.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">⌂</div>
+                    <div class="contact-item-text">
+                        <h4>公司地址</h4>
+                        <p>河北省石家庄市长安区中山东路XXX号</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">⏰</div>
+                    <div class="contact-item-text">
+                        <h4>服务时间</h4>
+                        <p>周一至周日 8:00 - 18:00（24小时值班）</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>在线留言</h3>
+                <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p style="display:none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" name="name" placeholder="请添写您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系方式</label>
+                            <input type="text" id="phone" name="phone" placeholder="请添写您的联系电话" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">服务类型</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">请选择服务类型</option>
+                            <option value="property-management">物业管理</option>
+                            <option value="cleaning">保洁服务</option>
+                            <option value="maintenance">设备维护</option>
+                            <option value="community">社区服务</option>
+                            <option value="other">其他服务</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言内容</label>
+                        <textarea id="message" name="message" placeholder="请输入您的问题或需求..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">提交留言</button>
+                    <div class="form-success" id="formSuccess">
+                        ✓ 提交成功！感谢您的留言，我们将尽快与您联系。
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Footer ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>都市康洁物业</h3>
+                    <p>石家庄市都市康洁物业管理有限公司，专注物业服务二十余年，以专业、诚信、高效的服务理念，为每一位业主打造温馨、安全、舒适的居住环境。</p>
+                    <div class="footer-social">
+                        <a href="#" title="微信公众号">微</a>
+                        <a href="#" title="官方微博">博</a>
+                        <a href="#" title="抖音号">抖</a>
+                        <a href="#" title="业主APP">APP</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>服务项目</h4>
+                    <ul>
+                        <li><a href="#detail-management">物业管理</a></li>
+                        <li><a href="#detail-cleaning">保洁服务</a></li>
+                        <li><a href="#detail-maintenance">设备维护</a></li>
+                        <li><a href="#detail-community">社区服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#about">公司介绍</a></li>
+                        <li><a href="#stats">企业数据</a></li>
+                        <li><a href="#services">服务项目</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li><a href="tel:031188888888">0311-8888-8888</a></li>
+                        <li><a href="mailto:service@ds-kangjie.com">service@ds-kangjie.com</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">抖音号</a></li>
+                        <li><a href="#">业主APP下载</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 石家庄市都市康洁物业管理有限公司 版权所有 | 冀ICP备XXXXXXXX号</p>
+                <div class="footer-bottom-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">网站地图</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== Back to Top ========== -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ========== Music Player ========== -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="背景音乐">
+        <span class="music-icon">♫</span>
+        <span class="music-bars">
+            <span class="music-bar"></span>
+            <span class="music-bar"></span>
+            <span class="music-bar"></span>
+            <span class="music-bar"></span>
+        </span>
+    </button>
+
+    <!-- ========== JavaScript ========== -->
+    <script>
+        // ===== Theme Toggle =====
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            document.getElementById('themeToggle').textContent = next === 'dark' ? '🌙' : '☀️';
+            localStorage.setItem('theme', next);
+        }
+
+        // Load saved theme
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                document.getElementById('themeToggle').textContent = saved === 'dark' ? '🌙' : '☀️';
+            }
+        })();
+
+        // ===== Mobile Menu =====
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('navLinks').classList.remove('open');
+        }
+
+        // ===== Back to Top =====
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== Counter Animation =====
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(function(counter) {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                function update() {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.textContent = target;
+                    }
+                }
+                update();
+            });
+        }
+
+        // Intersection Observer for counters
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // ===== Form Submit =====
+        var form = document.getElementById('contactForm');
+        var success = document.getElementById('formSuccess');
+        var btn = form.querySelector('.form-submit');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btn.textContent = '提交中...';
+            btn.disabled = true;
+
+            var formData = new FormData(form);
+            var encoded = new URLSearchParams(formData).toString();
+
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                },
+                body: encoded
+            }).then(function(response) {
+                if (response.ok) {
+                    success.innerHTML = '✓ 提交成功！感谢您的留言，我们将尽快与您联系。';
+                    success.classList.add('show');
+                    form.reset();
+                    setTimeout(function() {
+                        success.classList.remove('show');
+                    }, 5000);
+                } else {
+                    success.innerHTML = '提交失败，请稍后重试或直接拨打我们的电话。';
+                    success.classList.add('show');
+                    setTimeout(function() {
+                        success.classList.remove('show');
+                        success.innerHTML = '✓ 提交成功！感谢您的留言，我们将尽快与您联系。';
+                    }, 5000);
+                }
+            }).catch(function() {
+                success.innerHTML = '提交失败，请稍后重试或直接拨打我们的电话。';
+                success.classList.add('show');
+                setTimeout(function() {
+                    success.classList.remove('show');
+                    success.innerHTML = '✓ 提交成功！感谢您的留言，我们将尽快与您联系。';
+                }, 5000);
+            }).finally(function() {
+                btn.textContent = '提交留言';
+                btn.disabled = false;
+            });
+        });
+
+        // ===== Navbar Scroll Effect =====
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // ===== Expandable Service Cards =====
+        function toggleServiceCard(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // ===== Expandable Service Groups (About Section) =====
+        function toggleServiceGroup(h4) {
+            var group = h4.parentElement;
+            group.classList.toggle('expanded');
+        }
+
+        // ===== Expandable Sub-detail Items (About Section) =====
+        function toggleSubDetail(li) {
+            // Prevent event from bubbling to parent group toggle
+            event.stopPropagation();
+            li.classList.toggle('sub-expanded');
+        }
+
+        // ===== Expandable Detail Items (Service Detail Sections) =====
+        function toggleDetailItem(li) {
+            li.classList.toggle('detail-expanded');
+        }
+        // ===== Music Player =====
+        var bgMusic = document.getElementById('bgMusic');
+        var musicBtn = document.getElementById('musicBtn');
+        var isMusicPlaying = false;
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                isMusicPlaying = false;
+            } else {
+                bgMusic.play().then(function() {
+                    musicBtn.classList.add('playing');
+                    isMusicPlaying = true;
+                }).catch(function() {
+                });
+            }
+        }
+
+        // 页面加载时立即尝试自动播放
+        window.addEventListener('load', function() {
+            bgMusic.play().then(function() {
+                musicBtn.classList.add('playing');
+                isMusicPlaying = true;
+            }).catch(function() {
+                // 浏览器阻止自动播放，等用户第一次点击时再播放
+                document.addEventListener('click', function playOnce() {
+                    if (!isMusicPlaying) {
+                        bgMusic.play().then(function() {
+                            musicBtn.classList.add('playing');
+                            isMusicPlaying = true;
+                        }).catch(function() {});
+                    }
+                    document.removeEventListener('click', playOnce);
+                }, { once: true });
+
+                document.addEventListener('touchstart', function playOnceTouch() {
+                    if (!isMusicPlaying) {
+                        bgMusic.play().then(function() {
+                            musicBtn.classList.add('playing');
+                            isMusicPlaying = true;
+                        }).catch(function() {});
+                    }
+                    document.removeEventListener('touchstart', playOnceTouch);
+                }, { once: true });
+            });
+        });
+
+        // ===== Lightbox =====
+        function openLightbox(src) {
+            var lightbox = document.getElementById('lightbox');
+            var img = document.getElementById('lightboxImg');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+    <!-- ========== Lightbox ========== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="大图" id="lightboxImg">
+    </div>
+
+</body>
+</html>
